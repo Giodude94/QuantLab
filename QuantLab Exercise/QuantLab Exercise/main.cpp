@@ -56,9 +56,10 @@ int main() {
 		//Iterating through the vector that holds the tuple of each trade symbol.
 		for (auto vecIt = it->second.begin(); vecIt != it->second.end(); vecIt++) {
 
-			//
+			//adds the running total of volume for every trade in each symbol.
 			volume += std::get<1>(*vecIt);
-
+			
+			//adds the running total of quantities * prices for each trade in each symbol.
 			weightedAveragePrice += std::get<1>(*vecIt) * std::get<2>(*vecIt);
 
 			//Calculation for finding the max Price per symbol
