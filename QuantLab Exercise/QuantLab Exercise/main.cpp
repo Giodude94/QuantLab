@@ -24,9 +24,9 @@ int main() {
 
 	//Declaring and Initializing variables that are to be used in the program
 	unsigned long long maxTimeGap = 0;
-	int volume = 0;
-	int weightedAveragePrice = 0;
-	int maxPrice = 0;
+	unsigned int volume = 0;
+	unsigned int weightedAveragePrice = 0;
+	unsigned int maxPrice = 0;
 
 
 	std::string time = "";
@@ -34,7 +34,8 @@ int main() {
 	std::string quantity;
 	std::string price;
 
-
+	
+	//Reading from the csv file and storing the corresponding information into a string variable.
 	while (reader.peek() != EOF) {
 
 		std::getline(reader, time, ',');
@@ -50,7 +51,7 @@ int main() {
 
 	}
 
-	//Iterating through each key in the map, there is only one.
+	//Iterating through each key in the map, there is only one for each symbol.
 	for (std::map<std::string, std::vector<std::tuple<std::string, int, int>>>::iterator it = tradeInfo.begin(); it != tradeInfo.end(); it++) {
 
 		//Iterating through the vector that holds the tuple of each trade symbol.
@@ -59,7 +60,7 @@ int main() {
 			//adds the running total of volume for every trade in each symbol.
 			volume += std::get<1>(*vecIt);
 			
-			//adds the running total of quantities * prices for each trade in each symbol.
+			//adds the running total of quantities x prices for each trade in each symbol.
 			weightedAveragePrice += std::get<1>(*vecIt) * std::get<2>(*vecIt);
 
 			//Calculation for finding the max Price per symbol
